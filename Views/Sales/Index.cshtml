@@ -1,0 +1,129 @@
+﻿@model IEnumerable<TestForASPCORE.Models.Sales>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Sales</h1>
+<div class="float-right">
+    <form asp-controller="Sales" asp-action="Index">
+        <span class="btn-group">
+            <input name="searchText" id="txtSearch" type="text" class="form-control" />
+            <input type="submit" id="btnSearch" value="Search" class="btn btn-primary" />
+        </span>
+
+    </form>
+
+</div>
+<p class="float-left">
+    <br />
+    <a asp-action="getBillNo" class="btn btn-primary">Add</a>
+</p>
+<div class="table-responsive-md">
+    <table class="table table-bordered table-md">
+        <thead>
+            <tr>
+                <th>
+                    Bill No
+                </th>
+                <th>
+                    Customer Id
+                </th>
+                <th>
+                    Customer Name
+                </th>
+                <th>
+                    Product Id
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Unit Price
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Actions
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() != 0)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.billNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.customerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.customerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.productId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.productName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.unitPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.total)
+                        </td>
+
+
+                        <td>
+                            @Html.ActionLink("Edit", "UpdateSales", new { id = item.productId, item.billNo, item.customerId, item.productId, item.productName, item.quantity, item.unitPrice }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.billNo, item.productId }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No Record Found!</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+    
+    <div style="display:grid; float:right;">
+        <div class="form-group">
+            <div class=" float-right">
+                <br />
+                <label class="control-label"> Total </label>
+                <input class="form-control" id="txtTotal" value="@Model.Sum(i=>i.total)" />
+            </div>
+        </div>
+
+        <div class="form-group  float-right">
+
+            <br />
+            <label class="control-label"> 13% Vat </label>
+            <input class="form-control" id="txtTaxValue" value="@Model.Sum(i=>i.total*0.13)" />
+
+        </div>
+        <div class="form-group  float-right">
+            <br />
+            <label class="control-label"> Total With VAT </label>
+            <input class="form-control" id="txtTaxTotalValue" value="@Model.Sum(i=>i.total*0.13+i.total)" />
+
+        </div>
+    </div>

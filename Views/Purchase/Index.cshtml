@@ -1,0 +1,113 @@
+﻿@model IEnumerable<TestForASPCORE.Models.Purchase>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Purchase Bill</h1>
+
+<div class="float-right">
+    <form asp-controller="Purchase" asp-action="Index">
+        <span class="btn-group">
+            <input name="searchText" id="txtSearch" type="text" class="form-control" />
+            <input type="submit" id="btnSearch" value="Search" class="btn btn-primary" />
+        </span>
+
+    </form>
+
+</div>
+<p class="float-left">
+    <br />
+    <a asp-action="InsertPurchase" class="btn btn-primary">Add</a>
+</p>
+<table class=" table table-sm" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.billNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.supplierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.productName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.unitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+
+            <th>
+                Purchase Date
+            </th>
+
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.billNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.supplierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.purchaseDate)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "UpdatePurchase", new { id = item.supplierName, item.billNo, item.productName, item.quantity, item.unitPrice, item.purchaseDate,item.productId }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Delete", "delete", new { id = item.supplierName, item.billNo, item.productName, item.quantity, item.unitPrice, item.purchaseDate, item.productId }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<div style="display:grid; float:right;">
+    <div class="form-group">
+        <div class=" float-right">
+            <br />
+            <label class="control-label"> Total </label>
+            <input class="form-control" id="txtTotal" value="@Model.Sum(i=>i.total)" />
+        </div>
+    </div>
+
+    <div class="form-group  float-right">
+
+        <br/>
+        <label class="control-label"> 13% Vat </label>
+        <input class="form-control" id="txtTaxValue" value="@Model.Sum(i=>i.total*0.13)" />
+
+    </div>
+    <div class="form-group  float-right">
+        <br />
+        <label class="control-label"> Total With VAT </label>
+        <input class="form-control" id="txtTaxTotalValue" value="@Model.Sum(i=>i.total*0.13+i.total)" />
+
+    </div>
+</div>
+
+

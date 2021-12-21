@@ -1,0 +1,74 @@
+﻿@model TestForASPCORE.Models.Sales
+
+@{
+    ViewData["Title"] = "InsertSales";
+}
+
+<h1>Insert Sales</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <input class ="btn btn-danger"type="button" value="AddNewBill" onclick="editLabel()" />
+        <form asp-action="insertSales">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label  class="control-label" id="lblBillNo" > Bill No </label> @ViewBag.billNo
+                <input asp-for="billNo" value="@ViewBag.billNo" type=""  class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="customerId" class="control-label"> Customer Id</label>
+                <input asp-for="customerId" class="form-control" />
+
+                <span asp-validation-for="customerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productId" class="control-label"> Product Name</label>
+                <select asp-for="productId" class="form-control" asp-items="@(new SelectList(@ViewBag.productData,"id","name"))">
+                </select>
+                <span asp-validation-for="productId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="quantity" class="control-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="unitPrice" class="control-label"></label>
+                <input asp-for="unitPrice" class="form-control" />
+                <span asp-validation-for="unitPrice" class="text-danger"></span>
+            </div>
+            <!--
+        <div class="form-group">
+            <label asp-for="total" class="control-label"></label>
+            <input asp-for="total" class="form-control" />
+            <span asp-validation-for="total" class="text-danger"></span>
+        </div>
+            -->
+            <!--
+        <div class="form-group">
+            <label asp-for="productName" class="control-label"></label>
+            <input asp-for="productName" class="form-control" />
+            <span asp-validation-for="productName" class="text-danger"></span>
+        </div>
+        -->
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-success">Sales List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function editLabel()
+    {
+        document.getElementById("lblBillNo").Value = "New BillNo";
+        window.location.href = '@Url.Action("getBillNo", "Sales")/';
+    }
+</script>
+

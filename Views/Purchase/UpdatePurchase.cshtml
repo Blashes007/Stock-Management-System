@@ -1,0 +1,45 @@
+﻿@model TestForASPCORE.Models.Purchase
+@{
+    ViewData["Title"] = "UpdatePurchase";
+}
+
+<h1>UpdatePurchase</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="updatePurchase">
+
+            <div class="form-group">
+                <input type="hidden" asp-for="billNo">
+                <input type="hidden" asp-for="supplierId">
+                <input type="hidden" asp-for="productId">
+                <label asp-for="quantity" class="control-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productId" class="control-label"></label>
+                <input asp-for="productId" class="form-control" />
+                <span asp-validation-for="productId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="unitPrice" class="control-label"></label>
+                <input asp-for="unitPrice" class="form-control" />
+                <span asp-validation-for="unitPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="purchaseDate" class="control-label"></label>
+                <input asp-for="purchaseDate" class="form-control" />
+                <span asp-validation-for="purchaseDate" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-success">Supplier List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+

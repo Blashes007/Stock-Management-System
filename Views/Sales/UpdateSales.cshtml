@@ -1,0 +1,53 @@
+﻿@model TestForASPCORE.Models.Sales
+
+@{
+    ViewData["Title"] = "UpdateSales";
+}
+
+<h1>UpdateSales</h1>
+
+<h4>Sales</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="updateSales">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <input asp-for="billNo" class="form-control" type="hidden" />
+                
+            </div>
+            <div class="form-group">
+                
+                <input asp-for="productId" class="form-control"  type="hidden"/>
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="quantity" class="control-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="unitPrice" class="control-label"></label>
+                <input asp-for="unitPrice" class="form-control" />
+                <span asp-validation-for="unitPrice" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="customerId" class="control-label"></label>
+                <input asp-for="customerId" class="form-control" />
+                <span asp-validation-for="customerId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update Data" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,42 @@
+﻿@model TestForASPCORE.Models.Product
+
+@{
+    ViewData["Title"] = "InsertProduct";
+}
+
+<h1>InsertProduct</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="insertProduct">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="barCode" class="control-label"> Bar Code</label>
+                <input asp-for="barCode" class="form-control" />
+                <span asp-validation-for="barCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"> Product Name </label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="categoryName" class="control-label"> Category</label>
+                <select asp-for="categoryName" class="form-control" asp-items="@(new SelectList(@ViewBag.productData,"id","name"))">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Insert" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-success">Product Category List</a>
+</div>
+

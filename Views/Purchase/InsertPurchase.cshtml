@@ -1,0 +1,56 @@
+﻿@model TestForASPCORE.Models.Purchase
+
+@{
+    ViewData["Title"] = "InsertPurchase";
+}
+
+<h1>InsertPurchase</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="insertPurchase">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="billNo" class="control-label"></label>
+                <input asp-for="billNo" class="form-control" />
+                <span asp-validation-for="billNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="supplierName" class="control-label"> Supplier</label>
+                <select asp-for="supplierName" class="form-control" asp-items="@(new SelectList(@ViewBag.productData,"id","name"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="productName" class="control-label"> Product</label>
+                <select asp-for="productName" class="form-control" asp-items="@(new SelectList(@ViewBag.productData2,"id","name"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="quantity" class="control-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="unitPrice" class="control-label"></label>
+                <input asp-for="unitPrice" class="form-control" />
+                <span asp-validation-for="unitPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="purchaseDate" class="control-label"></label>
+                <input asp-for="purchaseDate" class="form-control" />
+                <span asp-validation-for="purchaseDate" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Insert" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-success">Supplier List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
